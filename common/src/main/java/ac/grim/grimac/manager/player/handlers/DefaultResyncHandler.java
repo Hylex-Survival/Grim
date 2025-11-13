@@ -103,6 +103,11 @@ public class DefaultResyncHandler implements ResyncHandler {
         final int chunkZ = z >> 4;
         if (!player.compensatedWorld.isChunkLoaded(chunkX, chunkZ)) return;
 
+        // Validate Y coordinate is within world bounds
+        final int minBlock = player.compensatedWorld.getMinHeight();
+        final int maxBlock = player.compensatedWorld.getMaxHeight() - 1;
+        if (y < minBlock || y > maxBlock) return; // Y out of bounds, skip resync
+
         // TODO this is not technically thread safe, but to trigger race condition requires
         // 0. Client to flag a Blockbreak check (to trigger calling this method)
         // 1. Get World (netty thread accessing main/region thread resource)
