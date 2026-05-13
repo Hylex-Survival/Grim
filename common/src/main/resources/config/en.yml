@@ -213,7 +213,7 @@ max-ping-firework-boost: 1000
 
 history:
     enabled: true
-    # How many entries should be shown for each page with /grim history <player>
+    # How many entries should be shown for each page with /ac history <player>
     entries-per-page: 15
     # What should the inserted server name be for the history command? This is useful if you use the same database for multiple servers
     server-name: Prison

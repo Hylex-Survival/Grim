@@ -13,7 +13,7 @@ public class GrimHelp implements BuildableCommand {
     @Override
     public void register(CommandManager<Sender> commandManager) {
         commandManager.command(
-                commandManager.commandBuilder("grim", "grimac")
+                commandManager.commandBuilder("ac")
                         .literal("help", Description.of("Display help information"))
                         .permission("grim.help")
                         .handler(this::handleHelp)

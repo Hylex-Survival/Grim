@@ -7,7 +7,7 @@ body:
       label: Describe the false positive and how to replicate it
       description: |
         Video is always useful.
-        Use /grim verbose to get debug information from the failing check.
+        Use /ac verbose to get debug information from the failing check.
         A minimally reproducible description is best.
       placeholder: |
         Step 1. Do this

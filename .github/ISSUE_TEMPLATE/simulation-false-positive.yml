@@ -7,7 +7,7 @@ body:
       label: Describe the false positive and how to replicate it
       description: |
         Video is always useful.
-        Use /grim verbose and /grim debug to get the simulation debug information.
+        Use /ac verbose and /ac debug to get the simulation debug information.
         A minimally reproducible description is best.
       placeholder: |
         Step 1. Do this
@@ -20,7 +20,7 @@ body:
     attributes:
       label: Grim Log
       description: |
-        Provide the generated /grim log link.
+        Provide the generated /ac log link.
     validations:
       required: true
 

@@ -13,7 +13,7 @@ public class GrimReload implements BuildableCommand {
     @Override
     public void register(CommandManager<Sender> commandManager) {
         commandManager.command(
-                commandManager.commandBuilder("grim", "grimac")
+                commandManager.commandBuilder("ac")
                         .literal("reload")
                         .permission("grim.reload")
                         .handler(this::handleReload)

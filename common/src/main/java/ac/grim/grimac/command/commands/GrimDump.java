@@ -31,7 +31,7 @@ public class GrimDump implements BuildableCommand {
     @Override
     public void register(CommandManager<Sender> commandManager) {
         commandManager.command(
-                commandManager.commandBuilder("grim", "grimac")
+                commandManager.commandBuilder("ac")
                         .literal("dump", Description.of("Generate a debug dump"))
                         .permission("grim.dump")
                         .handler(this::handleDump)

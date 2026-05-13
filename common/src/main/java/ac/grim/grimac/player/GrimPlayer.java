@@ -844,6 +844,10 @@ public class GrimPlayer implements GrimUser {
         return checkManager.getPacketCheck(ClientBrand.class).getBrand();
     }
 
+    public List<String> getMods() {
+        return checkManager.getPacketCheck(ClientBrand.class).getMods();
+    }
+
     @Override
     public @Nullable String getWorldName() {
         return platformPlayer != null ? platformPlayer.getWorld().getName() : null;

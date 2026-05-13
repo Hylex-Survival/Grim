@@ -212,7 +212,7 @@ max-ping-firework-boost: 1000
 
 history:
     enabled: true
-    # Câte înregistrări să fie afișate pe pagină cu /grim history <player>
+    # Câte înregistrări să fie afișate pe pagină cu /ac history <player>
     entries-per-page: 15
     # Ce nume de server să fie inserat pentru comanda history? Util dacă folosești aceeași bază de date pentru mai multe servere
     server-name: Prison

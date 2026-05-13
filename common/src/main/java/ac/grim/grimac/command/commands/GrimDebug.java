@@ -20,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 public class GrimDebug implements BuildableCommand {
 
     public void register(CommandManager<Sender> commandManager) {
-        Command.Builder<Sender> grimCommand = commandManager.commandBuilder("grim", "grimac");
+        Command.Builder<Sender> grimCommand = commandManager.commandBuilder("ac");
 
         // Register "debug" subcommand
         Command.Builder<Sender> debugCommand = grimCommand

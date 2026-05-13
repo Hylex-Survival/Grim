@@ -40,18 +40,14 @@ public class CommandRegister implements StartableInitable {
         new GrimDebug().register(commandManager);
         new GrimAlerts().register(commandManager);
         new GrimProfile().register(commandManager);
-        new GrimSendAlert().register(commandManager);
         new GrimHelp().register(commandManager);
         new GrimHistory().register(commandManager);
         new GrimReload().register(commandManager);
-        new GrimSpectate().register(commandManager);
-        new GrimStopSpectating().register(commandManager);
         new GrimLog().register(commandManager);
         new GrimVerbose().register(commandManager);
         new GrimVersion().register(commandManager);
         new GrimDump().register(commandManager);
         new GrimBrands().register(commandManager);
-        new GrimList().register(commandManager);
 
         final RequirementPostprocessor<Sender, SenderRequirement>
                 senderRequirementPostprocessor = RequirementPostprocessor.of(

@@ -14,7 +14,7 @@ public class GrimBrands implements BuildableCommand {
     @Override
     public void register(CommandManager<Sender> commandManager) {
         commandManager.command(
-                commandManager.commandBuilder("grim", "grimac")
+                commandManager.commandBuilder("ac")
                         .literal("brands", Description.of("Toggle brands for the sender"))
                         .permission("grim.brand")
                         .handler(this::handleBrands)
