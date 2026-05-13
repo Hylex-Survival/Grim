@@ -15,6 +15,7 @@ import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import lombok.RequiredArgsConstructor;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.jetbrains.annotations.Nullable;
 
@@ -25,6 +26,8 @@ public class PunishmentManager implements ConfigReloadable {
     private final List<PunishGroup> groups = new ArrayList<>();
     private String experimentalSymbol = "*";
     private String alertString;
+    private String alertHoverString = "";
+    private String hoverVerboseFormat = "";
     private boolean testMode;
     private String proxyAlertString = "";
 
@@ -37,6 +40,8 @@ public class PunishmentManager implements ConfigReloadable {
         List<String> punish = config.getStringListElse("Punishments", new ArrayList<>());
         experimentalSymbol = config.getStringElse("experimental-symbol", "*");
         alertString = config.getStringElse("alerts-format", "%prefix% &f%player% &bfailed &f%check_name% &f(x&c%vl%&f) &7%verbose%");
+        alertHoverString = String.join("\n", config.getStringListElse("alerts-format-hover", new ArrayList<>()));
+        hoverVerboseFormat = config.getStringElse("hover-verbose-format", "");
         testMode = config.getBooleanElse("test-mode", false);
         proxyAlertString = config.getStringElse("alerts-format-proxy", "%prefix% &f[&cproxy&f] &f%player% &bfailed &f%check_name% &f(x&c%vl%&f) &7%verbose%");
         try {
@@ -108,6 +113,45 @@ public class PunishmentManager implements ConfigReloadable {
         ).replace("%verbose%", MiniMessage.miniMessage().escapeTags(verbose));
     }
 
+    private Component buildAlertHover(int vl, Check check, String verbose) {
+        if (alertHoverString.isEmpty()) return null;
+        String text = replaceAlertHoverPlaceholders(alertHoverString, vl, check, verbose);
+        if (text.endsWith("\n")) text = text.substring(0, text.length() - 1);
+        return MessageUtil.miniMessage(text);
+    }
+
+    private String replaceAlertHoverPlaceholders(String original, int vl, Check check, String verbose) {
+        return MessageUtil.replacePlaceholders(player, original
+                .replace("%check_name%", check.getDisplayName())
+                .replace("%experimental%", check.isExperimental() ? experimentalSymbol : "")
+                .replace("%vl%", Integer.toString(vl))
+                .replace("%description%", check.getDescription())
+        ).replace("%verbose%", formatVerboseForHover(verbose));
+    }
+
+    private String formatVerboseForHover(String verbose) {
+        if (hoverVerboseFormat.isEmpty() || verbose.isEmpty()) {
+            return MiniMessage.miniMessage().escapeTags(verbose);
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (String pair : verbose.split(", ")) {
+            int idx = pair.indexOf('=');
+            if (idx <= 0) continue;
+            String key = pair.substring(0, idx).trim();
+            String value = pair.substring(idx + 1).trim();
+            if (key.isEmpty()) continue;
+
+            key = Character.toUpperCase(key.charAt(0)) + key.substring(1);
+
+            if (!sb.isEmpty()) sb.append('\n');
+            sb.append(hoverVerboseFormat
+                    .replace("%key%", MiniMessage.miniMessage().escapeTags(key))
+                    .replace("%value%", MiniMessage.miniMessage().escapeTags(value)));
+        }
+        return sb.toString();
+    }
+
     public boolean handleAlert(GrimPlayer player, String verbose, Check check) {
         boolean sentDebug = false;
 
@@ -125,6 +169,8 @@ public class PunishmentManager implements ConfigReloadable {
                     if (GrimAPI.INSTANCE.getAlertManager().hasVerboseListeners() && command.command.equals("[alert]")) {
                         sentDebug = true;
                         Component component = MessageUtil.miniMessage(cmd);
+                        Component hover = buildAlertHover(vl, check, verbose);
+                        if (hover != null) component = component.hoverEvent(HoverEvent.showText(hover));
                         verboseListeners = GrimAPI.INSTANCE.getAlertManager().sendVerbose(component, null);
                     }
 
@@ -148,6 +194,8 @@ public class PunishmentManager implements ConfigReloadable {
                                 case "[alert]" -> {
                                     sentDebug = true;
                                     Component message = MessageUtil.miniMessage(cmd);
+                                    Component hover = buildAlertHover(vl, check, verbose);
+                                    if (hover != null) message = message.hoverEvent(HoverEvent.showText(hover));
                                     if (testMode) { // secret test mode
                                         if (verboseListeners == null || verboseListeners.contains(player.platformPlayer)) {
                                             player.sendMessage(message);

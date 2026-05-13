@@ -38,8 +38,9 @@ public class BadPacketsL extends Check implements PacketCheck {
                     || packet.getBlockPosition().getZ() != 0
                     || packet.getSequence() != 0
             ) {
-                if (flagAndAlert("pos="
-                        + packet.getBlockPosition().getX() + ", " + packet.getBlockPosition().getY() + ", " + packet.getBlockPosition().getZ()
+                if (flagAndAlert("x=" + packet.getBlockPosition().getX()
+                        + ", y=" + packet.getBlockPosition().getY()
+                        + ", z=" + packet.getBlockPosition().getZ()
                         + ", face=" + packet.getBlockFace()
                         + ", sequence=" + packet.getSequence()
                         + ", action=" + packet.getAction().toString().toLowerCase(Locale.ROOT)

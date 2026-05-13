@@ -54,7 +54,7 @@ public class PacketOrderB extends Check implements PacketCheck {
 
                 if (is1_9 ? !sentAnimationSinceLastAttack : !sentAnimation) {
                     sentAttack = false; // don't flag twice
-                    if (flagAndAlert("pre-attack") && shouldModifyPackets()) {
+                    if (flagAndAlert("phase=pre-attack") && shouldModifyPackets()) {
                         event.setCancelled(true);
                         player.onPacketCancel();
                     }
@@ -72,7 +72,7 @@ public class PacketOrderB extends Check implements PacketCheck {
 
         if (!isAsync(event.getPacketType())) {
             if (sentAttack && is1_9) {
-                flagAndAlert("post-attack");
+                flagAndAlert("phase=post-attack");
             }
 
             sentAttack = sentAnimation = sentSlotSwitch = false;

@@ -39,6 +39,15 @@ run-as-player-or-console: "%prefix% &cDiesen Befehl können nur Spieler oder die
 # %verbose% - zusätzliche Informationen von der Prüfung, nicht alle Prüfungen liefern zusätzliche Informationen
 alerts-format: "%prefix% &f%player% &bbestand &f%check_name%%experimental% &bnicht &f(x&c%vl%&f) &7%verbose%"
 alerts-format-proxy: "%prefix% &f[&cproxy&f] &f%player% &bbestand &f%check_name%%experimental% &bnicht &f(x&c%vl%&f) &7%verbose%"
+alerts-format-hover:
+    - "&7Player: %player%"
+    - "&7Ping: %ping%ms"
+    - "&7Brand: %brand%"
+    - "&7Version: %version%"
+    - "&7Check: %check_name%"
+    - "&7Description: %description%"
+    - "%verbose%"
+hover-verbose-format: "&8- &7%key%: &f%value%"
 experimental-symbol: "*"
 
 profile:

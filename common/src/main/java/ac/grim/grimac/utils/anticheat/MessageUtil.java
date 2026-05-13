@@ -27,11 +27,11 @@ public class MessageUtil {
     private final char PLACEHOLDER_ESCAPE_CHAR = '\uFFFF'; // this specific character holds no significance
 
     public @NotNull String toUnlabledString(@Nullable Vector3i vec) {
-        return vec == null ? "null" : vec.x + ", " + vec.y + ", " + vec.z;
+        return vec == null ? "null" : vec.x + "/" + vec.y + "/" + vec.z;
     }
 
     public @NotNull String toUnlabledString(@Nullable Vector3f vec) {
-        return vec == null ? "null" : vec.x + ", " + vec.y + ", " + vec.z;
+        return vec == null ? "null" : vec.x + "/" + vec.y + "/" + vec.z;
     }
 
     @Contract("_, null, _ -> null; _, !null, _ -> !null")

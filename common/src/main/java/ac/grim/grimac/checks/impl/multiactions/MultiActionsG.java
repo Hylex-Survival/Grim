@@ -19,13 +19,13 @@ public class MultiActionsG extends BlockPlaceCheck {
     @Override
     public void onPacketReceive(PacketReceiveEvent event) {
         if (event.getPacketType() == PacketType.Play.Client.INTERACT_ENTITY && isCheckActive()
-                && flagAndAlert("interact") && shouldModifyPackets()) {
+                && flagAndAlert("action=interact") && shouldModifyPackets()) {
             event.setCancelled(true);
             player.onPacketCancel();
         }
 
         if (event.getPacketType() == PacketType.Play.Client.USE_ITEM && isCheckActive()
-                && flagAndAlert("use") && shouldModifyPackets()) {
+                && flagAndAlert("action=use") && shouldModifyPackets()) {
             event.setCancelled(true);
             player.onPacketCancel();
         }
@@ -33,7 +33,7 @@ public class MultiActionsG extends BlockPlaceCheck {
 
     @Override
     public void onBlockPlace(BlockPlace place) {
-        if (isCheckActive() && flagAndAlert(place.getFace() == BlockFace.OTHER ? "use" : "place") && shouldModifyPackets() && shouldCancel()) {
+        if (isCheckActive() && flagAndAlert(place.getFace() == BlockFace.OTHER ? "action=use" : "action=place") && shouldModifyPackets() && shouldCancel()) {
             place.resync();
         }
     }

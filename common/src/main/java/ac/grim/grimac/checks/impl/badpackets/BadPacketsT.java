@@ -61,7 +61,7 @@ public class BadPacketsT extends Check implements PacketCheck {
                 }
 
                 // Log the vector
-                final String verbose = String.format("%.5f/%.5f/%.5f",
+                final String verbose = String.format("x=%.5f, y=%.5f, z=%.5f",
                         targetVector.x, targetVector.y, targetVector.z);
                 // We could pretty much ban the player at this point
                 flagAndAlert(verbose);

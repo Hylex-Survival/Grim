@@ -23,15 +23,15 @@ public class MultiActionsC extends Check implements PacketCheck {
     public static String getVerbose(@NotNull GrimPlayer player) {
         StringJoiner verbose = new StringJoiner(", ");
         if (player.isSprinting && (!player.isSwimming || !player.clientClaimsLastOnGround)) {
-            verbose.add("sprinting");
+            verbose.add("sprinting=true");
         }
 
         if (player.isSneaking && player.getClientVersion().isOlderThan(ClientVersion.V_1_15)) {
-            verbose.add("sneaking");
+            verbose.add("sneaking=true");
         }
 
         if (player.supportsEndTick() && player.packetStateData.knownInput.moving()) {
-            verbose.add("input");
+            verbose.add("input=true");
         }
 
         return verbose.toString();

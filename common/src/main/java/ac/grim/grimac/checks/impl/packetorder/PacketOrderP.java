@@ -23,11 +23,11 @@ public class PacketOrderP extends Check implements PacketCheck {
     public void onPacketReceive(PacketReceiveEvent event) {
         if (event.getPacketType() == PacketType.Play.Client.CHUNK_BATCH_ACK) {
             if (!transactions.rem(player.getLastTransactionReceived())) {
-                flagAndAlert("invalid response");
+                flagAndAlert("reason=invalid response");
             }
         } else if (!isAsync(event.getPacketType()) && !isTransaction(event.getPacketType())) {
             if (transactions.rem(player.getLastTransactionReceived())) {
-                flagAndAlert("skipped response, type=" + event.getPacketType());
+                flagAndAlert("reason=skipped response, type=" + event.getPacketType());
             }
         }
     }
@@ -43,7 +43,7 @@ public class PacketOrderP extends Check implements PacketCheck {
             if (++trimTimer == 0) transactions.trim();
             player.addRealTimeTaskNext(() -> {
                 if (transactions.rem(transaction))
-                    flagAndAlert("skipped response, type=TRANSACTION");
+                    flagAndAlert("reason=skipped response, type=TRANSACTION");
             });
 
             if (!sendingBundlePacket) {

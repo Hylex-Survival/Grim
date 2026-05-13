@@ -27,7 +27,7 @@ public class CrashH extends Check implements PacketCheck {
                     event.setCancelled(true);
                     player.onPacketCancel();
                 }
-                flagAndAlert("(length) length=" + length);
+                flagAndAlert("reason=length, length=" + length);
                 return;
             }
             // paper's patch
@@ -37,7 +37,7 @@ public class CrashH extends Check implements PacketCheck {
                     event.setCancelled(true);
                     player.onPacketCancel();
                 }
-                flagAndAlert("(invalid) length=" + length);
+                flagAndAlert("reason=invalid, length=" + length);
             }
         }
     }

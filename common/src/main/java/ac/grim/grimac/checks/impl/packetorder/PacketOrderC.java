@@ -49,7 +49,7 @@ public class PacketOrderC extends Check implements PacketCheck {
                 // INTERACT_AT then INTERACT
                 case INTERACT:
                     if (!sentInteractAt) {
-                        if (flagAndAlert("Skipped Interact-At") && shouldModifyPackets()) {
+                        if (flagAndAlert("skipped=interact-at") && shouldModifyPackets()) {
                             event.setCancelled(true);
                             player.onPacketCancel();
                         }
@@ -67,7 +67,7 @@ public class PacketOrderC extends Check implements PacketCheck {
                     break;
                 case INTERACT_AT:
                     if (sentInteractAt) {
-                        if (flagAndAlert("Skipped Interact") && shouldModifyPackets()) {
+                        if (flagAndAlert("skipped=interact") && shouldModifyPackets()) {
                             event.setCancelled(true);
                             player.onPacketCancel();
                         }
@@ -84,7 +84,7 @@ public class PacketOrderC extends Check implements PacketCheck {
         if (WrapperPlayClientPlayerFlying.isFlying(event.getPacketType())) {
             if (sentInteractAt) {
                 sentInteractAt = false;
-                flagAndAlert("Skipped Interact (Tick)");
+                flagAndAlert("skipped=interact (tick)");
             }
         }
     }

@@ -48,7 +48,7 @@ public class BadPacketsU extends Check implements PacketCheck {
                         || packet.getSequence() != 0
                 ) {
                     final String verbose = String.format(
-                            "xyz=%s, %s, %s, cursor=%s, %s, %s, item=%s, sequence=%s",
+                            "x=%s, y=%s, z=%s, cursorX=%s, cursorY=%s, cursorZ=%s, item=%s, sequence=%s",
                             pos.x, pos.y, pos.z, cursor.x, cursor.y, cursor.z, !failedItemCheck, packet.getSequence()
                     );
                     if (flagAndAlert(verbose) && shouldModifyPackets()) {

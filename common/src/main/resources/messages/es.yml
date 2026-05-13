@@ -40,6 +40,15 @@ run-as-player-or-console: "%prefix% &c¡Este comando solo puede ser utilizado po
 # %verbose% - información extra de la comprobación como compensaciones. No todas añadirán informacion.
 alerts-format: "%prefix% &f%player% &bfalló &f%check_name%%experimental% &f(x&c%vl%&f) &7%verbose%"
 alerts-format-proxy: "%prefix% &f[&cproxy&f] &f%player% &bfailed &f%check_name%%experimental% &f(x&c%vl%&f) &7%verbose%"
+alerts-format-hover:
+    - "&7Player: %player%"
+    - "&7Ping: %ping%ms"
+    - "&7Brand: %brand%"
+    - "&7Version: %version%"
+    - "&7Check: %check_name%"
+    - "&7Description: %description%"
+    - "%verbose%"
+hover-verbose-format: "&8- &7%key%: &f%value%"
 experimental-symbol: "*"
 
 profile:

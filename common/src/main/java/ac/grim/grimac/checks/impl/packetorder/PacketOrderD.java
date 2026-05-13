@@ -33,7 +33,7 @@ public class PacketOrderD extends Check implements PacketCheck {
                 if (packet.getHand() == InteractionHand.OFF_HAND) {
                     if (action == InteractAction.INTERACT) {
                         if (!sentMainhand) {
-                            if (flagAndAlert("Skipped Mainhand") && shouldModifyPackets()) {
+                            if (flagAndAlert("skipped=mainhand") && shouldModifyPackets()) {
                                 event.setCancelled(true);
                                 player.onPacketCancel();
                             }

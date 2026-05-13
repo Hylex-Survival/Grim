@@ -37,6 +37,15 @@ run-as-player-or-console: "%prefix% &cこのコマンドはプレイヤーまた
 # %verbose% - チェックからの追加情報（全てのチェックが情報を追加するわけではありません）
 alerts-format: "%prefix% &f%player% が &b%check_name%%experimental% &fに失敗しました (x&c%vl%&f) &7%verbose%"
 alerts-format-proxy: "%prefix% &f[&cプロキシ&f] &f%player% が &b%check_name%%experimental% &fに失敗しました (x&c%vl%&f) &7%verbose%"
+alerts-format-hover:
+    - "&7Player: %player%"
+    - "&7Ping: %ping%ms"
+    - "&7Brand: %brand%"
+    - "&7Version: %version%"
+    - "&7Check: %check_name%"
+    - "&7Description: %description%"
+    - "%verbose%"
+hover-verbose-format: "&8- &7%key%: &f%value%"
 experimental-symbol: "*"
 
 profile:

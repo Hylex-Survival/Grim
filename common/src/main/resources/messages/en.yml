@@ -30,16 +30,25 @@ disconnect:
 run-as-player: "%prefix% &cThis command can only be used by players!"
 run-as-player-or-console: "%prefix% &cThis command can only be used by players or the console!"
 
-# Valid placeholders:
+# Valid placeholders for alerts-format, alerts-format-proxy, and alerts-format-hover:
 # %prefix%
-# %player%
-# %check_name%
-# %description%
-# %experimental%
-# %vl% - violations
-# %verbose% - extra information from the check such as offsets, not all checks will add information
+# %player%, %uuid%, %ping%, %brand%, %version%, %tps%, %mods%
+# %h_sensitivity%, %v_sensitivity%, %fast_math%
+# %check_name%, %description%, %experimental%, %vl%
+# %verbose% - in alerts-format-hover, formatted per-entry using hover-verbose-format
+# alerts-format-hover is a list of strings, one per line. Set to [] to disable the hover.
+# hover-verbose-format: template per key=value pair in verbose. Use %key% and %value%. Set to "" to show raw verbose.
 alerts-format: "%prefix% &f%player% &bfailed &f%check_name%%experimental% &f(x&c%vl%&f) &7%verbose%"
 alerts-format-proxy: "%prefix% &f[&cproxy&f] &f%player% &bfailed &f%check_name%%experimental% &f(x&c%vl%&f) &7%verbose%"
+alerts-format-hover:
+    - "&7Player: %player%"
+    - "&7Ping: %ping%ms"
+    - "&7Brand: %brand%"
+    - "&7Version: %version%"
+    - "&7Check: %check_name%"
+    - "&7Description: %description%"
+    - "%verbose%"
+hover-verbose-format: "&8- &7%key%: &f%value%"
 experimental-symbol: "*"
 
 profile:

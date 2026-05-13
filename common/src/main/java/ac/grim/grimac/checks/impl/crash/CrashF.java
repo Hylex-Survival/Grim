@@ -26,12 +26,12 @@ public class CrashF extends Check implements PacketCheck {
             int slot = click.getSlot();
 
             if ((clickType == WindowClickType.QUICK_MOVE || clickType == WindowClickType.SWAP) && windowId >= 0 && button < 0) {
-                if (flagAndAlert("clickType=" + clickType + " button=" + button)) {
+                if (flagAndAlert("clickType=" + clickType + ", button=" + button)) {
                     event.setCancelled(true);
                     player.onPacketCancel();
                 }
             } else if (windowId >= 0 && clickType == WindowClickType.SWAP && slot < 0) {
-                if (flagAndAlert("clickType=" + clickType + " button=" + button + " slot=" + slot)) {
+                if (flagAndAlert("clickType=" + clickType + ", button=" + button + ", slot=" + slot)) {
                     event.setCancelled(true);
                     player.onPacketCancel();
                 }

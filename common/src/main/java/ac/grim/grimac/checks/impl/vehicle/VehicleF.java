@@ -43,7 +43,7 @@ public class VehicleF extends Check implements PacketCheck {
             }
 
             if (packet.isLeftPaddleTurning() != expectedLeft || packet.isRightPaddleTurning() != expectedRight) {
-                if (flagAndAlert("sent=(" + packet.isLeftPaddleTurning() + ", " + packet.isRightPaddleTurning() + "), expected=(" + expectedLeft + ", " + expectedRight + ")")
+                if (flagAndAlert("sentLeft=" + packet.isLeftPaddleTurning() + ", sentRight=" + packet.isRightPaddleTurning() + ", expectedLeft=" + expectedLeft + ", expectedRight=" + expectedRight)
                     && shouldModifyPackets()) {
                     packet.setLeftPaddleTurning(expectedLeft);
                     packet.setRightPaddleTurning(expectedRight);

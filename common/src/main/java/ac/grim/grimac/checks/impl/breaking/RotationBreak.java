@@ -42,7 +42,7 @@ public class RotationBreak extends Check implements BlockBreakCheck {
         if (flagBuffer > 0 && !didRayTraceHit(blockBreak)) {
             ignorePost = true;
             // If the player hit and has flagged this check recently
-            if (flagAndAlert("pre-flying, action=" + blockBreak.action) && shouldModifyPackets()) {
+            if (flagAndAlert("phase=pre-flying, action=" + blockBreak.action) && shouldModifyPackets()) {
                 blockBreak.cancel();
             }
         }
@@ -65,7 +65,7 @@ public class RotationBreak extends Check implements BlockBreakCheck {
             flagBuffer = Math.max(0, flagBuffer - 0.1);
         } else {
             flagBuffer = 1;
-            flagAndAlert("post-flying, action=" + blockBreak.action);
+            flagAndAlert("phase=post-flying, action=" + blockBreak.action);
         }
     }
 

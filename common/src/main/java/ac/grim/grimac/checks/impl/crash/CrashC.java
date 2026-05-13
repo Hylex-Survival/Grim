@@ -23,7 +23,7 @@ public class CrashC extends Check implements PacketCheck {
                 if (!Double.isFinite(pos.getX()) || !Double.isFinite(pos.getY()) || !Double.isFinite(pos.getZ())
                     || !Float.isFinite(pos.getYaw()) || !Float.isFinite(pos.getPitch())
                    ) {
-                    flagAndAlert("xyzYP: " + pos.getX() + ", " + pos.getY() + ", " + pos.getZ() + ", " + pos.getYaw() + ", " + pos.getPitch());
+                    flagAndAlert("x=" + pos.getX() + ", y=" + pos.getY() + ", z=" + pos.getZ() + ", yaw=" + pos.getYaw() + ", pitch=" + pos.getPitch());
                     player.getSetbackTeleportUtil().executeViolationSetback();
                     event.setCancelled(true);
                     player.onPacketCancel();

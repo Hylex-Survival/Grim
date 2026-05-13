@@ -40,6 +40,15 @@ run-as-player-or-console: "%prefix% &cDit commando kan alleen door spelers of de
 # %verbose% - extra informatie van de controle zoals offsets, niet alle controles voegen informatie toe
 alerts-format: "%prefix% &f%player% &bmislukt &f%check_name%%experimental% &f(x&c%vl%&f) &7%verbose%"
 alerts-format-proxy: "%prefix% &f[&cproxy&f] &f%player% &bmislukt &f%check_name%%experimental% &f(x&c%vl%&f) &7%verbose%"
+alerts-format-hover:
+    - "&7Player: %player%"
+    - "&7Ping: %ping%ms"
+    - "&7Brand: %brand%"
+    - "&7Version: %version%"
+    - "&7Check: %check_name%"
+    - "&7Description: %description%"
+    - "%verbose%"
+hover-verbose-format: "&8- &7%key%: &f%value%"
 experimental-symbol: "*"
 
 profile:

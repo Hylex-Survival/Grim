@@ -83,7 +83,7 @@ public class Post extends Check implements PacketCheck, PostPredictionCheck {
             PacketTypeCommon packetType = event.getPacketType();
             if (isTransaction(packetType) && player.packetStateData.lastTransactionPacketWasValid) {
                 if (sentFlying && !post.isEmpty()) {
-                    flags.add(post.getFirst().toString().toLowerCase(Locale.ROOT).replace("_", " ") + " v" + player.getClientVersion().getReleaseName());
+                    flags.add("packet=" + post.getFirst().toString().toLowerCase(Locale.ROOT).replace("_", " ") + ", version=" + player.getClientVersion().getReleaseName());
                 }
                 post.clear();
                 sentFlying = false;

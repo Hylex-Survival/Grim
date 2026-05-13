@@ -27,11 +27,11 @@ public class MultiActionsF extends BlockPlaceCheck {
         block = true;
         if (entity) {
             if (!player.canSkipTicks()) {
-                if (flagAndAlert("place") && shouldModifyPackets() && shouldCancel()) {
+                if (flagAndAlert("action=place") && shouldModifyPackets() && shouldCancel()) {
                     place.resync();
                 }
             } else {
-                flags.add("place");
+                flags.add("action=place");
             }
         }
     }
@@ -42,12 +42,12 @@ public class MultiActionsF extends BlockPlaceCheck {
             entity = true;
             if (block) {
                 if (!player.canSkipTicks()) {
-                    if (flagAndAlert("entity") && shouldModifyPackets()) {
+                    if (flagAndAlert("action=entity") && shouldModifyPackets()) {
                         event.setCancelled(true);
                         player.onPacketCancel();
                     }
                 } else {
-                    flags.add("entity");
+                    flags.add("action=entity");
                 }
             }
         }
@@ -63,11 +63,11 @@ public class MultiActionsF extends BlockPlaceCheck {
             block = true;
             if (entity) {
                 if (!player.canSkipTicks()) {
-                    if (flagAndAlert("dig") && shouldModifyPackets()) {
+                    if (flagAndAlert("action=dig") && shouldModifyPackets()) {
                         blockBreak.cancel();
                     }
                 } else {
-                    flags.add("dig");
+                    flags.add("action=dig");
                 }
             }
         }

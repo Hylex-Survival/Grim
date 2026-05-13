@@ -251,7 +251,7 @@ public class Reach extends Check implements PacketCheck {
                 return new CheckResult(ResultType.HITBOX, "");
             } else if (minDistance > maxReach) {
                 cancelBuffer = 1;
-                return new CheckResult(ResultType.REACH, String.format("%.5f", minDistance) + " blocks");
+                return new CheckResult(ResultType.REACH, "distance=" + String.format("%.5f", minDistance));
             } else {
                 cancelBuffer = Math.max(0, cancelBuffer - 0.25);
             }

@@ -27,12 +27,12 @@ public class PacketOrderL extends Check implements PostPredictionCheck {
             if (new WrapperPlayClientClientStatus(event).getAction() == WrapperPlayClientClientStatus.Action.OPEN_INVENTORY_ACHIEVEMENT) {
                 if (player.packetOrderProcessor.isDropping()) {
                     if (!player.canSkipTicks()) {
-                        if (flagAndAlert("inventory") && shouldModifyPackets()) {
+                        if (flagAndAlert("action=inventory") && shouldModifyPackets()) {
                             event.setCancelled(true);
                             player.onPacketCancel();
                         }
                     } else {
-                        flags.add("inventory");
+                        flags.add("action=inventory");
                     }
                 }
             }
@@ -42,12 +42,12 @@ public class PacketOrderL extends Check implements PostPredictionCheck {
             if (new WrapperPlayClientPlayerDigging(event).getAction() == DiggingAction.SWAP_ITEM_WITH_OFFHAND) {
                 if (player.packetOrderProcessor.isDropping()) {
                     if (!player.canSkipTicks()) {
-                        if (flagAndAlert("swap") && shouldModifyPackets()) {
+                        if (flagAndAlert("action=swap") && shouldModifyPackets()) {
                             event.setCancelled(true);
                             player.onPacketCancel();
                         }
                     } else {
-                        flags.add("swap");
+                        flags.add("action=swap");
                     }
                 }
             }
