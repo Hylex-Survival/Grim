@@ -54,10 +54,20 @@ allprojects {
 
         exclusiveContent {
             forRepository {
-                maven("https://repo.grim.ac/snapshots") // Grim API & PacketEvents
+                maven("https://repo.grim.ac/snapshots") // Grim API
             }
             filter {
                 includeGroup("ac.grim.grimac")
+            }
+        }
+
+        exclusiveContent {
+            forRepository {
+                maven("https://repo.codemc.io/repository/maven-releases/") { // PacketEvents
+                    mavenContent { releasesOnly() }
+                }
+            }
+            filter {
                 includeGroup("com.github.retrooper")
             }
         }

@@ -49,13 +49,24 @@ repositories {
         }
     }
 
-    // For GrimAPI and PacketEvents (transitive from :common, direct in :bukkit)
+    // For GrimAPI
     exclusiveContent {
         forRepository {
             maven("https://repo.grim.ac/snapshots")
         }
         filter {
             includeGroup("ac.grim.grimac")
+        }
+    }
+
+    // For PacketEvents (transitive from :common, direct in :bukkit)
+    exclusiveContent {
+        forRepository {
+            maven("https://repo.codemc.io/repository/maven-releases/") { // PacketEvents
+                mavenContent { releasesOnly() }
+            }
+        }
+        filter {
             includeGroup("com.github.retrooper")
         }
     }

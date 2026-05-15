@@ -25,11 +25,6 @@ public class PacketPlayerSteer extends PacketListenerAbstract {
     }
 
     @Override
-    public boolean isPreVia() {
-        return true;
-    }
-
-    @Override
     public void onPacketReceive(PacketReceiveEvent event) {
         if (event.getPacketType() == PacketType.Play.Client.STEER_VEHICLE) {
             GrimPlayer player = GrimAPI.INSTANCE.getPlayerDataManager().getPlayer(event.getUser());

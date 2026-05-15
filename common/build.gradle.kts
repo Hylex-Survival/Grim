@@ -16,6 +16,16 @@ repositories {
         }
         filter {
             includeGroup("ac.grim.grimac")
+        }
+    }
+
+    exclusiveContent {
+        forRepository {
+            maven("https://repo.codemc.io/repository/maven-releases/") { // PacketEvents
+                mavenContent { releasesOnly() }
+            }
+        }
+        filter {
             includeGroup("com.github.retrooper")
         }
     }
