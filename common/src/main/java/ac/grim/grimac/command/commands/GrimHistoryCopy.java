@@ -41,7 +41,7 @@ public class GrimHistoryCopy implements BuildableCommand {
     @Override
     public void register(CommandManager<Sender> commandManager, CloudPlatformCommandArguments arguments) {
         commandManager.command(
-                commandManager.commandBuilder("grim", "grimac")
+                commandManager.commandBuilder("ac")
                         .literal("history")
                         .literal("copy")
                         .permission("grim.history.copy")
@@ -115,7 +115,7 @@ public class GrimHistoryCopy implements BuildableCommand {
             }
         } catch (BackendException e) {
             logBoth(sender, Component.text("Copy failed: " + e.getMessage(), NamedTextColor.RED));
-            LogUtil.error("v1 copy failed via /grim history copy", e);
+            LogUtil.error("v1 copy failed via /ac history copy", e);
         }
     }
 

@@ -22,7 +22,7 @@ public class GrimStopSpectating implements BuildableCommand {
     @Override
     public void register(CommandManager<Sender> commandManager, CloudPlatformCommandArguments arguments) {
         commandManager.command(
-                commandManager.commandBuilder("grim", "grimac")
+                commandManager.commandBuilder("ac")
                         .literal("stopspectating")
                         .permission("grim.spectate")
                         .optional("here", StringParser.stringParser(), SuggestionProvider.blocking((ctx, in) -> {

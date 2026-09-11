@@ -18,7 +18,7 @@ public class GrimAlerts implements BuildableCommand {
     @Override
     public void register(CommandManager<Sender> commandManager, CloudPlatformCommandArguments arguments) {
         commandManager.command(
-                commandManager.commandBuilder("grim", "grimac")
+                commandManager.commandBuilder("ac")
                         .literal("alerts", Description.of("Toggle alerts for the sender"))
                         .permission("grim.alerts")
                         .handler(this::handleAlerts)

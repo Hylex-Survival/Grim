@@ -72,7 +72,7 @@ public class GrimLog implements BuildableCommand {
 
     @Override
     public void register(CommandManager<Sender> commandManager, CloudPlatformCommandArguments arguments) {
-        Command<Sender> command = commandManager.commandBuilder("grim", "grimac")
+        Command<Sender> command = commandManager.commandBuilder("ac")
                 .literal("log", "logs")
                 .permission("grim.log")
                 .required("flagId", IntegerParser.integerParser())

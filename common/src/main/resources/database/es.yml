@@ -19,7 +19,7 @@
 database:
 
   # Interruptor principal. Pon en false para desactivar el historial de
-  # violaciones + /grim history por completo. Las comprobaciones AC en vivo
+  # violaciones + /ac history por completo. Las comprobaciones AC en vivo
   # siguen funcionando; las flags simplemente no se persisten.
   enabled: true
 
@@ -96,7 +96,7 @@ database:
     group-interval-ms: 30000
 
   # Etiqueta solo visual estampada en los nuevos registros de sesión. Se
-  # muestra en la línea de cabecera de sesión de `/grim history`. Cambiarla
+  # muestra en la línea de cabecera de sesión de `/ac history`. Cambiarla
   # en operación es seguro.
   server-name: "ChangeMe"
 

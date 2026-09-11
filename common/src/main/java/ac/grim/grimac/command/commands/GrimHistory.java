@@ -83,7 +83,7 @@ public class GrimHistory implements BuildableCommand {
         SuggestionProvider<Sender> targetSuggestions = targetSuggestions(arguments);
 
         commandManager.command(
-                commandManager.commandBuilder("grim", "grimac")
+                commandManager.commandBuilder("ac")
                         .literal("history", "hist")
                         .literal("repair")
                         .literal("check-ids")
@@ -112,7 +112,7 @@ public class GrimHistory implements BuildableCommand {
             SuggestionProvider<Sender> violationPageSuggestions) {
         // Fresh builder per branch — reusing one cross-pollinates siblings.
         java.util.function.Supplier<Command.Builder<Sender>> base = () -> {
-            Command.Builder<Sender> b = commandManager.commandBuilder("grim", "grimac")
+            Command.Builder<Sender> b = commandManager.commandBuilder("ac")
                     .literal("history", "hist")
                     .permission("grim.history");
             if (withPlayerLiteral) b = b.literal("player");
@@ -251,7 +251,7 @@ public class GrimHistory implements BuildableCommand {
         // dispatch on the same branch — a target that needed the 'player'
         // escape hatch (e.g. someone named 'repair') would route through
         // the wrong literal if the help printed the bare form.
-        String addressPrefix = "/grim history " + (viaPlayer ? "player " : "");
+        String addressPrefix = "/ac history " + (viaPlayer ? "player " : "");
         sender.sendMessage(Component.text()
                 .append(Component.text(addressPrefix, NamedTextColor.GRAY))
                 .append(Component.text(target, NamedTextColor.WHITE))
@@ -527,7 +527,7 @@ public class GrimHistory implements BuildableCommand {
             runOnGlobalThread(() -> reportRepairComplete(sender, prewarmed, plan, result));
         } catch (Exception e) {
             runOnGlobalThread(() -> logBoth(sender, Component.text("Repair failed: " + e.getMessage(), NamedTextColor.RED)));
-            LogUtil.error("v1 check-id repair failed via /grim history repair check-ids", e);
+            LogUtil.error("v1 check-id repair failed via /ac history repair check-ids", e);
         } finally {
             REPAIR_RUNNING.set(false);
         }

@@ -45,7 +45,7 @@ public class GrimHistoryMigrate implements BuildableCommand {
     @Override
     public void register(CommandManager<Sender> commandManager, CloudPlatformCommandArguments arguments) {
         commandManager.command(
-                commandManager.commandBuilder("grim", "grimac")
+                commandManager.commandBuilder("ac")
                         .literal("history")
                         .literal("migrate")
                         .permission("grim.history.migrate")
@@ -101,7 +101,7 @@ public class GrimHistoryMigrate implements BuildableCommand {
             }
         } catch (BackendException e) {
             logBoth(sender, Component.text("Migration failed: " + e.getMessage(), NamedTextColor.RED));
-            LogUtil.error("Legacy migration failed via /grim history migrate", e);
+            LogUtil.error("Legacy migration failed via /ac history migrate", e);
         }
     }
 
@@ -118,7 +118,7 @@ public class GrimHistoryMigrate implements BuildableCommand {
         if (v1 == null) {
             throw new BackendException(
                     "no SQLite backend in routing — legacy migration needs SQLite as its target; "
-                            + "switch a category to sqlite in database.yml or use /grim history copy instead");
+                            + "switch a category to sqlite in database.yml or use /ac history copy instead");
         }
         CheckRegistry registry = lifecycle.checkRegistryForCommands();
         long gapMs = lifecycle.config().session().gapMs();

@@ -18,7 +18,7 @@
 # anahtarlarla (`enabled`, `history` vb.) çakışırdı.
 database:
 
-  # Ana anahtar. False yapıldığında ihlal geçmişi ve /grim history tamamen
+  # Ana anahtar. False yapıldığında ihlal geçmişi ve /ac history tamamen
   # devre dışı kalır. Canlı AC kontrolleri çalışmaya devam eder; sadece
   # flag'ler kalıcılaştırılmaz.
   enabled: true
@@ -97,7 +97,7 @@ database:
     group-interval-ms: 30000
 
   # Yeni oturum kayıtlarına basılan, yalnızca görüntüleme amaçlı etiket.
-  # `/grim history` çıktısının oturum başlık satırında gösterilir. Çalışma
+  # `/ac history` çıktısının oturum başlık satırında gösterilir. Çalışma
   # sırasında değiştirmek güvenlidir.
   server-name: "ChangeMe"
 

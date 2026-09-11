@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 public class GrimPerf {
 
     public void register(CommandManager<Sender> commandManager, CloudPlatformCommandArguments arguments) {
-        Command.Builder<Sender> grimCommand = commandManager.commandBuilder("grim", "grimac");
+        Command.Builder<Sender> grimCommand = commandManager.commandBuilder("ac");
 
         Command.Builder<Sender> configuredBuilder = grimCommand
                 .literal("perf", "performance")

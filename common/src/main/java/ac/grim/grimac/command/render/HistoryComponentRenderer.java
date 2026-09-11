@@ -120,7 +120,7 @@ public final class HistoryComponentRenderer {
         String crashedMarker = (!ongoing && s.endedUnexpectedly())
                 ? cfg.getStringElse("grim-history-crashed-marker", " &8(&ccrashed&8)")
                 : "";
-        String detailCommand = "/grim history player " + playerDisplayName + " session " + s.sessionOrdinal();
+        String detailCommand = "/ac history player " + playerDisplayName + " session " + s.sessionOrdinal();
         RenderedTemplate rendered = parse(sender, cfg, "grim-history-session", SESSION_ROW_FALLBACK,
                 Map.ofEntries(
                         // Only sanitize untrusted leaves; keep operator-configured fragments intact.

@@ -46,20 +46,16 @@ public class CloudCommandService implements CommandService {
         new GrimDebug().register(commandManager, commandArguments);
         new GrimAlerts().register(commandManager, commandArguments);
         new GrimProfile().register(commandManager, commandArguments);
-        new GrimSendAlert().register(commandManager, commandArguments);
         new GrimHelp().register(commandManager, commandArguments);
         new GrimHistory().register(commandManager, commandArguments);
         new GrimHistoryMigrate().register(commandManager, commandArguments);
         new GrimHistoryCopy().register(commandManager, commandArguments);
         new GrimReload().register(commandManager, commandArguments);
-        new GrimSpectate().register(commandManager, commandArguments);
-        new GrimStopSpectating().register(commandManager, commandArguments);
         new GrimLog().register(commandManager, commandArguments);
         new GrimVerbose().register(commandManager, commandArguments);
         new GrimVersion().register(commandManager, commandArguments);
         new GrimDump().register(commandManager, commandArguments);
         new GrimBrands().register(commandManager, commandArguments);
-        new GrimList().register(commandManager, commandArguments);
         new GrimTestWebhook().register(commandManager, commandArguments);
 
         final RequirementPostprocessor<Sender, SenderRequirement>
@@ -77,10 +73,10 @@ public class CloudCommandService implements CommandService {
             Sender sender = context.context().sender();
             if (isHistoryInput(context.context().rawInput().input())) {
                 sender.sendMessage(Component.text("Invalid history syntax.", NamedTextColor.RED));
-                sender.sendMessage(Component.text("Use: /grim history <player> [page <N>]", NamedTextColor.GRAY));
-                sender.sendMessage(Component.text("Use: /grim history <player> session <N|latest> [page <N>] [-d] [-v]", NamedTextColor.GRAY));
-                sender.sendMessage(Component.text("Tip: /grim history <player> session shows filter and detail options.", NamedTextColor.GRAY));
-                sender.sendMessage(Component.text("Use /grim history player <player> ... for names that collide with history subcommands.", NamedTextColor.GRAY));
+                sender.sendMessage(Component.text("Use: /ac history <player> [page <N>]", NamedTextColor.GRAY));
+                sender.sendMessage(Component.text("Use: /ac history <player> session <N|latest> [page <N>] [-d] [-v]", NamedTextColor.GRAY));
+                sender.sendMessage(Component.text("Tip: /ac history <player> session shows filter and detail options.", NamedTextColor.GRAY));
+                sender.sendMessage(Component.text("Use /ac history player <player> ... for names that collide with history subcommands.", NamedTextColor.GRAY));
                 return;
             }
             sender.sendMessage(Component.text(context.exception().correctSyntax(), NamedTextColor.RED));
@@ -92,7 +88,7 @@ public class CloudCommandService implements CommandService {
         if (input.startsWith("/")) input = input.substring(1).strip();
         String[] tokens = input.toLowerCase(Locale.ROOT).split("\\s+");
         return tokens.length >= 2
-                && (tokens[0].equals("grim") || tokens[0].equals("grimac"))
+                && tokens[0].equals("ac")
                 && (tokens[1].equals("history") || tokens[1].equals("hist"));
     }
 

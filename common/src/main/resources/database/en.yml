@@ -16,7 +16,7 @@
 # top-level keys in config.yml / discord.yml (`enabled`, `history`, etc.).
 database:
 
-  # Master toggle. Set false to disable violation history + /grim history
+  # Master toggle. Set false to disable violation history + /ac history
   # entirely. Live AC checks keep running; flags just aren't persisted.
   enabled: true
 
@@ -109,7 +109,7 @@ database:
     group-interval-ms: 30000
 
   # Display-only tag stamped on new session records. Shown in the session
-  # header line of `/grim history`. Safe to change mid-operation.
+  # header line of `/ac history`. Safe to change mid-operation.
   server-name: "ChangeMe"
 
 # Schema markers — see header comment in config.yml.

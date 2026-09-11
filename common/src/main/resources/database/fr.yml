@@ -19,7 +19,7 @@
 database:
 
   # Interrupteur principal. Mettre à false pour désactiver complètement
-  # l'historique des violations + /grim history. Les checks AC en direct
+  # l'historique des violations + /ac history. Les checks AC en direct
   # continuent de tourner ; les flags ne sont simplement pas persistés.
   enabled: true
 
@@ -96,7 +96,7 @@ database:
     group-interval-ms: 30000
 
   # Tag d'affichage estampillé sur les nouveaux enregistrements de session.
-  # Affiché dans la ligne d'en-tête de session de `/grim history`. Modifiable
+  # Affiché dans la ligne d'en-tête de session de `/ac history`. Modifiable
   # sans danger en cours d'opération.
   server-name: "ChangeMe"
 
