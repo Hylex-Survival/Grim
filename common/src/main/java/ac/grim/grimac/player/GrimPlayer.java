@@ -930,6 +930,10 @@ public class GrimPlayer implements GrimUser {
         return checkManager.get(ClientBrand.class).getBrand();
     }
 
+    public List<String> getMods() {
+        return checkManager.get(ClientBrand.class).getMods();
+    }
+
     @Override
     public @Nullable String getWorldName() {
         return platformPlayer != null ? platformPlayer.getWorld().getName() : null;

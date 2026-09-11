@@ -15,14 +15,22 @@ import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientPl
 import lombok.Getter;
 import net.kyori.adventure.text.Component;
 
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+
 public class ClientBrand extends GrimProcessor implements PacketReceiveListener {
 
     private static final String CHANNEL = PacketEvents.getAPI().getServerManager().getVersion().isNewerThanOrEquals(ServerVersion.V_1_13) ? "minecraft:brand" : "MC|Brand";
+    private static final String REGISTER_CHANNEL = PacketEvents.getAPI().getServerManager().getVersion().isNewerThanOrEquals(ServerVersion.V_1_13) ? "minecraft:register" : "REGISTER";
 
     @Getter
     private String brand = "vanilla";
     @Getter
     private boolean hasBrand = false;
+
+    @Getter
+    private final List<String> mods = new ArrayList<>();
 
     public ClientBrand(GrimPlayer player) {
         super(player);
@@ -39,7 +47,20 @@ public class ClientBrand extends GrimProcessor implements PacketReceiveListener 
         }
     }
 
+    private void handleRegister(byte[] data) {
+        String payload = new String(data, StandardCharsets.UTF_8);
+        for (String channel : payload.split("\0")) {
+            if (!channel.isEmpty() && !mods.contains(channel)) {
+                mods.add(channel);
+            }
+        }
+    }
+
     private void handle(String channel, byte[] data) {
+        if (channel.equals(REGISTER_CHANNEL)) {
+            handleRegister(data);
+            return;
+        }
         if (!channel.equals(ClientBrand.CHANNEL)) return;
 
         if (data.length > 64 || data.length == 0) {
