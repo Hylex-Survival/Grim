@@ -75,15 +75,21 @@ if (gradle.startParameter.isBuildScan) {
 rootProject.name = "grimac"
 include("common")
 include("bukkit")
-include("fabric")
-include(":fabric:shared")
-include(":fabric:intermediary")
-include(":fabric:intermediary:mc1161")
-include(":fabric:intermediary:mc1171")
-include(":fabric:intermediary:mc1194")
-include(":fabric:intermediary:mc1205")
-include(":fabric:intermediary:mc12111")
-include(":fabric:official")
-include(":fabric:official:mc261")
+
+// DropMC: -PskipFabric=true leaves the Fabric subprojects out. Configuring them pulls Loom
+// and remaps every supported Minecraft version, minutes the server-ops deploy spends on
+// jars it never ships.
+if (providers.gradleProperty("skipFabric").orNull != "true") {
+    include("fabric")
+    include(":fabric:shared")
+    include(":fabric:intermediary")
+    include(":fabric:intermediary:mc1161")
+    include(":fabric:intermediary:mc1171")
+    include(":fabric:intermediary:mc1194")
+    include(":fabric:intermediary:mc1205")
+    include(":fabric:intermediary:mc12111")
+    include(":fabric:official")
+    include(":fabric:official:mc261")
+}
 
 if (file("workspace.gradle.kts").exists()) apply(from = "workspace.gradle.kts")
