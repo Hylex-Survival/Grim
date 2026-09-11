@@ -18,13 +18,17 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
+import java.util.regex.Pattern;
 
 public class PunishmentManager implements ConfigReloadable {
     private static final CommandExecuteEvent.Channel COMMAND_CHANNEL = GrimAPI.INSTANCE.getEventBus().get(CommandExecuteEvent.class);
+    private static final Pattern VERBOSE_PAIR_SEPARATOR = Pattern.compile(",\\s+(?=[\\w-]+=)");
     private final GrimPlayer player;
     private final List<PunishGroup> groups = new ArrayList<>();
     private String experimentalSymbol = "*";
     private String alertString;
+    private String verboseLineFormat = "";
+    private String verboseBareLineFormat = "%value%";
     private boolean testMode;
     private String proxyAlertString = "";
 
@@ -36,6 +40,8 @@ public class PunishmentManager implements ConfigReloadable {
     public void reload(ConfigManager config) {
         List<String> punish = config.getStringListElse("Punishments", new ArrayList<>());
         experimentalSymbol = config.getStringElse("experimental-symbol", "*");
+        verboseLineFormat = config.getStringElse("hover-verbose-format", "");
+        verboseBareLineFormat = config.getStringElse("hover-verbose-format-bare", "%value%");
 
         alertString = config.getStringElse(
                 "alerts-format",
@@ -118,7 +124,37 @@ public class PunishmentManager implements ConfigReloadable {
                 .replace("%vl%", Integer.toString(vl))
                 .replace("%description%", check.getDescription())
                 .replace("%stable_key%", check.getStableKey())
-        ).replace("%verbose%", MessageUtil.miniMessageSafe(verbose));
+        )
+                .replace("%verbose_lines%", formatVerboseLines(verbose))
+                .replace("%verbose%", MessageUtil.miniMessageSafe(verbose));
+    }
+
+    // Renders "key=value, key=value" one entry per line for hovers. Pairs are split only at a comma
+    // followed by the next key, so values that contain ", " stay whole. A segment with no key, like
+    // Reach's "3.51234 blocks", uses the bare template instead of being dropped.
+    private String formatVerboseLines(String verbose) {
+        if (verbose == null || verbose.isEmpty()) return "";
+        if (verboseLineFormat.isEmpty()) return MessageUtil.miniMessageSafe(verbose);
+
+        StringJoiner lines = new StringJoiner("<newline>");
+        for (String segment : VERBOSE_PAIR_SEPARATOR.split(verbose)) {
+            segment = segment.strip();
+            if (segment.isEmpty()) continue;
+
+            int separator = segment.indexOf('=');
+            if (separator <= 0) {
+                lines.add(verboseBareLineFormat.replace("%value%", MessageUtil.miniMessageSafe(segment)));
+                continue;
+            }
+
+            String key = segment.substring(0, separator).strip();
+            String value = segment.substring(separator + 1).strip();
+            key = Character.toUpperCase(key.charAt(0)) + key.substring(1);
+            lines.add(verboseLineFormat
+                    .replace("%key%", MessageUtil.miniMessageSafe(key))
+                    .replace("%value%", MessageUtil.miniMessageSafe(value)));
+        }
+        return lines.toString();
     }
 
     public boolean handleAlert(GrimPlayer player, String verbose, Check check) {
