@@ -22,7 +22,7 @@ description = "Libre simulation anticheat designed for 26.2 with 1.8–26.2 supp
 ext["timestamp"] = System.currentTimeMillis().toString()
 ext["git_branch"] = VersionUtil.getGitBranch(project, true)
 ext["git_commit"] = VersionUtil.getGitCommitHash(project, true)
-ext["git_org"] = System.getenv("GRIM_GIT_ORG") ?: VersionUtil.getGitUser(project)
+ext["git_org"] = System.getenv("GRIM_GIT_ORG") ?: "DropMC"
 ext["git_repo"] = System.getenv("GRIM_GIT_REPO") ?: "Grim"
 
 println("Build configuration:")

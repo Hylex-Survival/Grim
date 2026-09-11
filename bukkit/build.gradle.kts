@@ -134,7 +134,7 @@ dependencies {
 
 bukkit {
     name = "GrimAC"
-    author = "GrimAC"
+    author = "GrimAC, DropMC"
     main = "ac.grim.grimac.platform.bukkit.GrimACBukkitLoaderPlugin"
     website = "https://grim.ac/"
     apiVersion = "1.13"
